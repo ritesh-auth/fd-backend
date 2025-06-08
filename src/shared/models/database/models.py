@@ -23,5 +23,6 @@ class OrderStatus(enum.Enum):
 
 class DeliveryAgentStatus(enum.Enum):
     AVAILABLE = "available"
-    BUSY 
+    BUSY  = "busy"
+    OFFLINE = "offline"
 
