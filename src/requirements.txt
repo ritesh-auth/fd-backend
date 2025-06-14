@@ -1,8 +1,20 @@
-sqlalchemy
-psycopg2-binary
-pydantic
-fastapi
-uvicorn
-python-multipart
-python-dotenv
-fastapi-users
+# FastAPI and web framework dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# Database dependencies
+sqlalchemy[asyncio]==2.0.23
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+
+# HTTP client for inter-service communication and currency APIs
+httpx==0.25.2
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Additional utilities
+python-multipart==0.0.6
+
+PyJWT==2.6.0

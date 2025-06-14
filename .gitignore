@@ -1,0 +1,4 @@
+#secret files
+*.env
+*/fd-backend/.idea
+/logs
