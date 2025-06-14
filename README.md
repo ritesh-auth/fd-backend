@@ -72,10 +72,7 @@ src/
      SECRET_KEY=your_secret_key
      ```
 
-5. **Run database migrations (if any):**
-   - (Describe migration tool here, e.g., Alembic, or manual SQL scripts.)
-
-6. **Start the services:**
+5. **Start the services:**
    - **Restaurant Service:**
      ```bash
      cd restaurant-service
@@ -91,20 +88,6 @@ src/
      cd ../delivery-service
      uvicorn app:app --reload --port 8003
      ```
-
-## Environment Variables
-
-All services use a shared `.env` file in the `src/` directory. Key variables:
-- `DATABASE_URL`
-- `SECRET_KEY`
-- (Add any other required variables)
-
-## Running Tests
-
-(Describe test setup if available, e.g., pytest)
-```bash
-pytest
-```
 
 ## API Documentation
 
