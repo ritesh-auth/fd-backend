@@ -2,3 +2,6 @@
 *.env
 */fd-backend/.idea
 /logs
+__pycache__
+**/__pycache__/
+src/API_DOCS.md
