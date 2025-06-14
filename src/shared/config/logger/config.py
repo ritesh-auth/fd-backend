@@ -22,8 +22,8 @@ def _setup_logger(name: str = __name__, level: int = logging.INFO) -> logging.Lo
 
     #Setup the name format and date format for the fike
     formatter = logging.Formatter(
-        format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        dateformat = '%Y-%m-%d %H:%M:%S'
+        fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        datefmt = '%Y-%m-%d %H:%M:%S'
     )
 
     console_handler = logging.StreamHandler(sys.stdout)
@@ -31,8 +31,12 @@ def _setup_logger(name: str = __name__, level: int = logging.INFO) -> logging.Lo
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
+    # Ensure the log file's parent directory exists
+    file_handler_path = log_directory / f"{name.replace('.', '_')}.log"
+    file_handler_path.parent.mkdir(parents=True, exist_ok=True)
+
     file_handler = RotatingFileHandler(
-        filename=log_directory / f"{name.replace('.', '_')}.log",
+        filename=file_handler_path,
         maxBytes=10 * 1024 * 1024,
         backupCount=5,
         encoding='utf-8'
@@ -56,8 +60,8 @@ def _setup_uvicorn_logger():
 
     #Setup the name format and date format for the fike
     formatter = logging.Formatter(
-        format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        dateformat = '%Y-%m-%d %H:%M:%S'
+        fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        datefmt = '%Y-%m-%d %H:%M:%S'
     )
 
     uvicorn_file_handler = RotatingFileHandler(
@@ -75,7 +79,3 @@ def _setup_uvicorn_logger():
 
 #App logger
 app_logger = get_logger("fd-backend")
-
-
-
-
