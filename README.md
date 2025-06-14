@@ -108,7 +108,7 @@ pytest
 
 ## API Documentation
 
-See [API_DOCS.md](API_DOCS.md) for a full list of endpoints, payloads, and responses.
+See [API_DOCS.md](API_DOCS.md) for a full list of endpoints, payloads, and responses. (only for validator please find in mail attachments)
 
 ## Contact
 
