@@ -6,4 +6,8 @@ __pycache__
 **/__pycache__/
 src/API_DOCS.md
 
+<<<<<<< HEAD
 start-services.sh
+=======
+src/user-service/routes/__pycache__/users.cpython-310.pyc
+>>>>>>> 3fd56b4de706da6e8494d69e2f2dbd300130e0fe

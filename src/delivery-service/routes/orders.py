@@ -97,16 +97,16 @@ async def update_delivery_status(
         logger.info(f"Order {order_id} delivery status updated to {new_status.value} by user {current_user.id}")
         
         return DeliveryResponse(
-            id=str(order.id),
-            user_id=str(order.user_id),
-            restaurant_id=str(order.restaurant_id),
-            delivery_agent_id=str(order.delivery_agent_id),
-            status=order.status,
-            total_amount=to_float(order.total_amount),  # Convert Decimal to float
-            delivery_address=order.delivery_address,
-            special_instructions=order.special_instructions,
-            estimated_delivery_time=order.estimated_delivery_time,
-            created_at=order.created_at.isoformat()
+            id                      = str(order.id),
+            user_id                 = str(order.user_id),
+            restaurant_id           = str(order.restaurant_id),
+            delivery_agent_id       = str(order.delivery_agent_id),
+            status                  = order.status,
+            total_amount            = to_float(order.total_amount),  # Convert Decimal to float
+            delivery_address        = order.delivery_address,
+            special_instructions    = order.special_instructions,
+            estimated_delivery_time = order.estimated_delivery_time,
+            created_at              = order.created_at.isoformat()
         )
         
     except HTTPException:
