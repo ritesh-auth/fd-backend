@@ -155,15 +155,15 @@ async def update_order_status(
         #if the status passes all above criteria then update the status in database.
         order.status = updated_status
 
-        if updated_status == OrderStatus.ACCEPTED:
+        # Only assign a delivery agent if not already assigned
+        if (updated_status == OrderStatus.ACCEPTED or updated_status == OrderStatus.PREPARING or updated_status == OrderStatus.OUT_FOR_DELIVERY) and not order.delivery_agent_id:
             delivery_agent = await auto_assign_delivery_agent(db)
             if delivery_agent:
                 order.delivery_agent_id = str(delivery_agent.id)
                 delivery_agent.status = DeliveryAgentStatus.BUSY #if the order is assigned then mark them as busy.
                 logger.info(f"Auto assigned delivery agent {delivery_agent.id} to order {order_id}")
-                
             else:
-                logger.warning(f"No delivery agent available at the movement. Assigning a agent shortly") #probably start some cron job unless the order is assigned to a delivery partner
+                logger.warning(f"No delivery agent available at the moment. Assigning an agent shortly") #probably start some cron job unless the order is assigned to a delivery partner
 
         await db.commit()
         await db.refresh(order)
@@ -212,7 +212,7 @@ async def auto_assign_delivery_agent(db: AsyncSession) -> Optional[DeliveryAgent
     """
 
     try:
-        agent_query        = select(DeliveryAgent.where(DeliveryAgent.status == DeliveryAgentStatus.AVAILABLE))
+        agent_query        = select(DeliveryAgent).where(DeliveryAgent.status == DeliveryAgentStatus.AVAILABLE)
         agent_query_result = await db.execute(agent_query)
         available_agent    = agent_query_result.scalars().all()
 
