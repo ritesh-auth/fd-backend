@@ -227,7 +227,7 @@ async def get_current_user(user_id: str = Depends(verify_jwt_token),
     """
     Get current user from token.
     """
-    user = await db.get(User, user.id)
+    user = await db.get(User, user_id)
     if not user or not user.is_active:
         raise HTTPException(status_code = 401, detail = "User not found or inactive")
     
