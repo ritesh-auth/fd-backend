@@ -5,3 +5,5 @@
 __pycache__
 **/__pycache__/
 src/API_DOCS.md
+
+src/user-service/routes/__pycache__/users.cpython-310.pyc
